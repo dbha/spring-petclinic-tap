@@ -1,10 +1,10 @@
 load('.tanzu/tanzu_tilt_extensions.py', 'tanzu_k8s_yaml')
 
-SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", default='ghcr.io/dbha/tap/supply-chain/spring-petclinic-tap-demo')
+SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", default='ghcr.io/dbha/tap/supply-chain/spring-petclinic-tap')
 LOCAL_PATH = os.getenv("LOCAL_PATH", default='.')
 NAMESPACE = os.getenv("NAMESPACE", default='demo')
 
-custom_build('ghcr.io/dbha/tap/supply-chain/spring-petclinic-tap-demo',
+custom_build('ghcr.io/dbha/tap/supply-chain/spring-petclinic-tap',
     "tanzu apps workload apply --file config/workload.yaml --live-update \
       --local-path " + LOCAL_PATH + " --source-image " + SOURCE_IMAGE + " --namespace " + NAMESPACE + " --yes",
   ['pom.xml', './target/classes'],
@@ -15,4 +15,4 @@ custom_build('ghcr.io/dbha/tap/supply-chain/spring-petclinic-tap-demo',
 )
 
 allow_k8s_contexts('tap-private-cluster-admin@tap-private-cluster')
-tanzu_k8s_yaml('spring-petclinic-tap', 'ghcr.io/dbha/tap/supply-chain/spring-petclinic-tap-demo', './config/workload.yaml')
+tanzu_k8s_yaml('spring-petclinic-tap', 'ghcr.io/dbha/tap/supply-chain/spring-petclinic-tap', './config/workload.yaml')

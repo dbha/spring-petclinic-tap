@@ -4,14 +4,12 @@ metadata:
   labels:
     apps.tanzu.vmware.com/workload-type: web
     apps.tanzu.vmware.com/has-tests: "true"
+    app.kubernetes.io/part-of: spring-petclinic-tap
   name: spring-petclinic-tap
-  namespace: tanzu-apps
-  params:
-    - name: run-image
-      value: ghcr.io/dbha/spring-petclinic-tap
+  namespace: demo
 spec:
   source:
     git:
       ref:
-        branch: main
-      url: https://github.com/jaimegag/spring-petclinic-tap
+        branch: master
+      url: https://github.com/dbha/spring-petclinic-tap
